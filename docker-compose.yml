@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mentorat-backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - backend_node_modules:/app/node_modules
+      - sqlite_data:/app/prisma/data
+    environment:
+      - NODE_ENV=development
+      - PORT=4000
+      - JWT_SECRET=super-secret-key-change-in-prod
+      - DATABASE_URL=file:/app/prisma/data/dev.db
+      - FRONTEND_URL=http://localhost:3000
+    command: npx ts-node-dev --respawn --transpile-only src/index.ts
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mentorat-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - frontend_node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:4000
+    command: npm run dev
+    depends_on:
+      - backend
+
+volumes:
+  backend_node_modules:
+  frontend_node_modules:
+  sqlite_data:
