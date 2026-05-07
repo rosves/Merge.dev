@@ -1,0 +1,74 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer"
+  },
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "messages": "Messages",
+    "group": "Canal modération",
+    "news": "Actualités",
+    "admin": "Administration",
+    "logout": "Déconnexion"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Email",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "passwordConfirm": "Confirmer le mot de passe",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "alreadyAccount": "Vous avez déjà un compte ?",
+    "noAccount": "Pas encore de compte ?",
+    "loginHere": "Connectez-vous ici",
+    "registerHere": "Inscrivez-vous ici"
+  },
+  "errors": {
+    "required": "Ce champ est requis",
+    "emailInvalid": "Email invalide",
+    "passwordMin": "Le mot de passe doit faire au moins 6 caractères",
+    "passwordMatch": "Les mots de passe ne correspondent pas",
+    "loginFailed": "Email ou mot de passe incorrect",
+    "serverError": "Erreur serveur, réessayez plus tard"
+  },
+  "dashboard": {
+    "title": "Actualités",
+    "noNews": "Aucune actualité pour le moment"
+  },
+  "messages": {
+    "title": "Messagerie",
+    "noConversations": "Aucune conversation",
+    "startConversation": "Démarrer une conversation",
+    "typeMessage": "Tapez votre message...",
+    "send": "Envoyer",
+    "typing": "est en train d'écrire..."
+  },
+  "news": {
+    "create": "Créer une actualité",
+    "title": "Titre",
+    "content": "Contenu",
+    "publish": "Publier",
+    "publishedBy": "Publié par",
+    "publishedAt": "le"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "message": "La page que vous recherchez n'existe pas.",
+    "backHome": "Retour à l'accueil"
+  },
+  "serverError": {
+    "title": "Erreur serveur",
+    "message": "Une erreur s'est produite. Veuillez réessayer.",
+    "retry": "Réessayer"
+  }
+}

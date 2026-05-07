@@ -1,4 +1,4 @@
-# MentorTech — Plateforme de mentorat tech
+# Merge.dev — Plateforme de mentorat tech
 
 ## Équipe
 

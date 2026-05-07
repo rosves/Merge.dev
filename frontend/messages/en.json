@@ -1,0 +1,74 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "messages": "Messages",
+    "group": "Moderation channel",
+    "news": "News",
+    "admin": "Administration",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "passwordConfirm": "Confirm password",
+    "loginButton": "Sign in",
+    "registerButton": "Sign up",
+    "alreadyAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "loginHere": "Sign in here",
+    "registerHere": "Sign up here"
+  },
+  "errors": {
+    "required": "This field is required",
+    "emailInvalid": "Invalid email",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordMatch": "Passwords don't match",
+    "loginFailed": "Invalid email or password",
+    "serverError": "Server error, please try again later"
+  },
+  "dashboard": {
+    "title": "News Feed",
+    "noNews": "No news at the moment"
+  },
+  "messages": {
+    "title": "Messages",
+    "noConversations": "No conversations",
+    "startConversation": "Start a conversation",
+    "typeMessage": "Type your message...",
+    "send": "Send",
+    "typing": "is typing..."
+  },
+  "news": {
+    "create": "Create news",
+    "title": "Title",
+    "content": "Content",
+    "publish": "Publish",
+    "publishedBy": "Published by",
+    "publishedAt": "on"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you are looking for does not exist.",
+    "backHome": "Back to home"
+  },
+  "serverError": {
+    "title": "Server error",
+    "message": "An error occurred. Please try again.",
+    "retry": "Retry"
+  }
+}

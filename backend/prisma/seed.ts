@@ -127,7 +127,7 @@ async function main() {
   await prisma.news.createMany({
     data: [
       {
-        title: "Bienvenue sur MentorTech !",
+        title: "Bienvenue sur Merge.dev !",
         content:
           "La plateforme de mentorat tech est officiellement lancée. Connectez-vous pour trouver un mentor et progresser dans votre apprentissage du développement web.",
         authorId: admin.id,
