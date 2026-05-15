@@ -16,6 +16,12 @@ model User {
   role      String   @default("USER") // USER, MODERATOR, ADMIN
   createdAt DateTime @default(now())
 
+  bio               String?
+  professionalTitle String?
+  skills            String? 
+  github            String?
+  linkedin          String?
+
   sentMessages     Message[]      @relation("SentMessages")
   receivedMessages Message[]      @relation("ReceivedMessages")
   groupMessages    GroupMessage[]

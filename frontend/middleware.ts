@@ -1,14 +1,11 @@
 import createMiddleware from "next-intl/middleware";
-import { locales } from "./src/i18n/request";
 
 export default createMiddleware({
-  locales,
+  locales: ["fr", "en"],
   defaultLocale: "fr",
-  localePrefix: "always", // toujours afficher /fr ou /en dans l'url
+  localePrefix: "always",
 });
 
 export const config = {
-  // matcher : sur quelles routes appliquer le middleware
-  // ici on exclut les fichiers statiques, api, etc
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };

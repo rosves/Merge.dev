@@ -1,9 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { locales } from "@/i18n/request";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { AuthProvider } from "@/contexts/AuthContext";
-import "../globals.css";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 
 export default async function LocaleLayout({
   children,
@@ -13,22 +11,16 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  if (!locales.includes(locale as any)) {
-    notFound();
-  }
-
+  setRequestLocale(locale);
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <AuthProvider>
+        <NotificationProvider>
+          {children}
+        </NotificationProvider>
+      </AuthProvider>
+    </NextIntlClientProvider>
   );
 }

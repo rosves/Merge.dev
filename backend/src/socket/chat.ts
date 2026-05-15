@@ -60,14 +60,18 @@ export function setupSocket(io: Server) {
         io.to(`user_${data.receiverId}`).emit("private_message", message);
         socket.emit("private_message", message);
 
-        // notif sse pour le destinataire
-        notificationEmitter.emit("notification", {
-          userId: data.receiverId,
-          notification: {
+        // sauvegarder la notification en DB puis émettre via SSE
+        const notification = await prisma.notification.create({
+          data: {
             type: "NEW_MESSAGE",
             content: `${user.username} vous a envoyé un message`,
-            createdAt: new Date(),
+            userId: data.receiverId,
           },
+        });
+
+        notificationEmitter.emit("notification", {
+          userId: data.receiverId,
+          notification,
         });
       } catch (error) {
         console.error("Erreur private_message:", error);

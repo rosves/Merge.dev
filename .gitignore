@@ -10,6 +10,7 @@ package-lock.json
 out/
 build/
 dist/
+*.tsbuildinfo
 
 # Environment variables
 .env

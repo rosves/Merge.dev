@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 
 interface User {
   id: number;
@@ -25,9 +24,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+
+  const getLocale = () => {
+    const seg = window.location.pathname.split("/")[1];
+    return ["fr", "en"].includes(seg) ? seg : "fr";
+  };
 
   // au chargement, verifier si un token existe dans le localStorage
   useEffect(() => {
@@ -70,7 +73,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(data.user);
     setToken(data.token);
     localStorage.setItem("token", data.token);
-    router.push("/dashboard");
+    window.location.href = `/${getLocale()}/dashboard`;
   };
 
   const register = async (email: string, username: string, password: string) => {
@@ -89,14 +92,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(data.user);
     setToken(data.token);
     localStorage.setItem("token", data.token);
-    router.push("/dashboard");
+    window.location.href = `/${getLocale()}/dashboard`;
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
-    router.push("/login");
+    window.location.href = `/${getLocale()}/login`;
   };
 
   return (

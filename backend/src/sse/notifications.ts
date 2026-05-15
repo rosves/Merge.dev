@@ -21,7 +21,6 @@ router.get("/news", authMiddleware, (req: AuthRequest, res: Response) => {
   }, 30000);
 
   const onNewNews = (news: any) => {
-    res.write(`event: new_news\n`);
     res.write(`data: ${JSON.stringify(news)}\n\n`);
   };
 
@@ -49,7 +48,6 @@ router.get("/notifications", authMiddleware, (req: AuthRequest, res: Response) =
   // filtre par userId
   const onNotification = (data: { userId: number; notification: any }) => {
     if (data.userId === userId) {
-      res.write(`event: notification\n`);
       res.write(`data: ${JSON.stringify(data.notification)}\n\n`);
     }
   };

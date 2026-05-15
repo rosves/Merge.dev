@@ -10,9 +10,13 @@ import messagesRoutes from "./routes/messages";
 import newsRoutes from "./routes/news";
 import sseRoutes from "./sse/notifications";
 import { setupSocket } from "./socket/chat";
+import notificationRoutes from "./routes/notifications";
 
 const app = express();
 const server = http.createServer(app);
+
+// Utiliser le vrai IP client même derrière un reverse proxy / Docker
+app.set("trust proxy", 1);
 
 // Socket.io
 const io = new Server(server, {
@@ -22,17 +26,19 @@ const io = new Server(server, {
   },
 });
 
-// rate limit global : 100 requetes / 15 min par IP
+// rate limit global : 200 requetes / 15 min par IP
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 200,
   message: { error: "Trop de requêtes, réessayez plus tard" },
+  skip: (req) => req.path === "/auth/me",
 });
 
-// rate limit strict sur l'auth : 10 tentatives / 15 min
+// rate limit strict sur l'auth : 20 tentatives / 15 min, sans compter les succès
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,
+  max: 20,
+  skipSuccessfulRequests: true,
   message: { error: "Trop de tentatives, réessayez plus tard" },
 });
 
@@ -46,6 +52,7 @@ app.use("/auth", authLimiter, authRoutes);
 app.use("/users", usersRoutes);
 app.use("/messages", messagesRoutes);
 app.use("/news", newsRoutes);
+app.use("/notifications", notificationRoutes);
 app.use("/sse", sseRoutes);
 
 // Route de test

@@ -4,58 +4,87 @@
 
 | Prénom | NOM | Classe |
 |--------|-----|--------|
-| Lytween | VICTOIRE| 5IWRJ |
-| Elias | DUVERNOIS| 5IWRJ |
+| Lytween | VICTOIRE | 5IWRJ |
+| Elias | DUVERNOIS | 5IWRJ |
+
+---
+
+## Prérequis
+
+- [Docker](https://www.docker.com/) et Docker Compose installés et en cours d'exécution
+- Git
 
 ---
 
 ## Installation et lancement
 
-### Prérequis
-- Docker et Docker Compose installés
+### 1. Cloner le dépôt
 
-### Étapes
-
-1. Cloner le repository :
 ```bash
 git clone https://github.com/rosves/Merge.dev.git
-cd merge.dev
+cd Merge.dev
 ```
 
-2. Lancer le projet :
+### 2. Lancer les conteneurs
+
 ```bash
 docker-compose up --build
 ```
 
-3. Le frontend est accessible sur **http://localhost:3000**
-4. Le backend est accessible sur **http://localhost:4000**
+> Le premier lancement prend quelques minutes (installation des dépendances).
+
+### 3. Initialiser la base de données
+
+Dans un second terminal, une fois les conteneurs démarrés :
+
+```bash
+docker exec mentorat-backend npx prisma migrate deploy
+```
+
+### 4. Accéder à l'application
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:3000 |
+| Backend (API) | http://localhost:4000 |
+
+> ⚠️ **Important — langue dans l'URL**
+>
+> L'application utilise un routage i18n. L'URL doit **toujours** contenir le code de langue :
+> - Français : `http://localhost:3000/fr/dashboard`
+> - Anglais : `http://localhost:3000/en/dashboard`
+>
+> Accéder directement à `http://localhost:3000` sans segment de langue fonctionne (redirection automatique), mais si vous êtes redirigé vers une page blanche ou une erreur 404, ajoutez manuellement `/fr` ou `/en` dans l'URL.
 
 ---
 
 ## Jeux de données (fixtures)
 
-Pour simuler la base de données avec les données de test :
+Pour peupler la base avec des données de test (utilisateurs, posts, messages) :
 
 ```bash
-docker exec mentorat-backend npx prisma migrate dev
 docker exec mentorat-backend npx ts-node prisma/seed.ts
 ```
+
+> Cette commande réinitialise complètement la base de données avant d'insérer les fixtures.
 
 ---
 
 ## Comptes de test
 
-| Rôle | Email | Mot de passe |
-|------|-------|-------------|
-| Admin | admin@test.com | admin123 |
-| Modérateur | modo@test.com | modo123 |
-| User | user@test.com | user123 |
+Tous les comptes utilisent le mot de passe : **`password123`**
+
+| Rôle | Email | Mot de passe | Permissions |
+|------|-------|--------------|-------------|
+| **Junior** (USER) | `junior1@test.com` | `password123` | Lecture du feed, messagerie privée |
+| **Mentor** (MODERATOR) | `mentor1@test.com` | `password123` | + Publication d'actualités, canal modération |
+| **Admin** (ADMIN) | `admin@test.com` | `password123` | Toutes les permissions |
 
 ---
 
 ## Technologies
 
-- **Frontend** : Next.js 14 (App Router), TypeScript, Tailwind CSS, React Hook Form, Zod, next-intl
+- **Frontend** : Next.js 15 (App Router), TypeScript, Tailwind CSS, next-intl (i18n)
 - **Backend** : Express, TypeScript, Prisma (SQLite), Socket.io, JWT
-- **Temps réel** : WebSocket (discussions), SSE (actualités, notifications)
+- **Temps réel** : WebSocket (messagerie), SSE (actualités, notifications)
 - **Containerisation** : Docker, Docker Compose
