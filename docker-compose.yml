@@ -18,7 +18,7 @@ services:
       - JWT_SECRET=super-secret-key-change-in-prod
       - DATABASE_URL=file:/app/prisma/data/dev.db
       - FRONTEND_URL=http://localhost:3000
-    command: npx ts-node-dev --respawn --transpile-only src/index.ts
+    command: sh -c "npx prisma db push && npx ts-node-dev --respawn --transpile-only src/index.ts"
 
   frontend:
     build:

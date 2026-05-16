@@ -31,17 +31,9 @@ cd Merge.dev
 docker-compose up --build
 ```
 
-> Le premier lancement prend quelques minutes (installation des dépendances).
+> Le premier lancement prend quelques minutes (installation des dépendances). La base de données est initialisée automatiquement au démarrage.
 
-### 3. Initialiser la base de données
-
-Dans un second terminal, une fois les conteneurs démarrés :
-
-```bash
-docker exec mentorat-backend npx prisma migrate deploy
-```
-
-### 4. Accéder à l'application
+### 3. Accéder à l'application
 
 | Service | URL |
 |---------|-----|
