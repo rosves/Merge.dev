@@ -66,11 +66,14 @@ docker exec mentorat-backend npx ts-node prisma/seed.ts
 
 Tous les comptes utilisent le mot de passe : **`password123`**
 
-| Rôle | Email | Mot de passe | Permissions |
-|------|-------|--------------|-------------|
-| **Junior** (USER) | `junior1@test.com` | `password123` | Lecture du feed, messagerie privée |
-| **Mentor** (MODERATOR) | `mentor1@test.com` | `password123` | + Publication d'actualités, canal modération |
-| **Admin** (ADMIN) | `admin@test.com` | `password123` | Toutes les permissions |
+| Rôle | Email | Username | Mot de passe | Permissions |
+|------|-------|----------|--------------|-------------|
+| **Junior** (USER) | `junior1@test.com` | JulienM | `password123` | Lecture du feed, messagerie privée |
+| **Junior** (USER) | `junior2@test.com` | MarieD | `password123` | Lecture du feed, messagerie privée |
+| **Junior** (USER) | `junior3@test.com` | ThomasB | `password123` | Lecture du feed, messagerie privée |
+| **Mentor** (MODERATOR) | `mentor1@test.com` | SophieA | `password123` | + Publication d'actualités, canal modération |
+| **Mentor** (MODERATOR) | `mentor2@test.com` | PierreL | `password123` | + Publication d'actualités, canal modération |
+| **Admin** (ADMIN) | `admin@test.com` | AdminDev | `password123` | Toutes les permissions |
 
 ---
 
